@@ -1,0 +1,18 @@
+[Unit]
+Description=ImpactInsight Flask App
+After=network.target
+
+[Service]
+User=ackumenqa
+WorkingDirectory=/home/ackumenqa/Insights4
+ExecStart=/usr/bin/gunicorn -w 4 -b 0.0.0.0:5000 app:app
+Restart=always
+TimeoutStopSec=30
+StandardOutput=journal
+StandardError=journal
+Environment="FLASK_APP=/home/ackumenqa/Insights4/app.py"
+Environment="FLASK_ENV=production"
+
+[Install]
+WantedBy=multi-user.target
+
